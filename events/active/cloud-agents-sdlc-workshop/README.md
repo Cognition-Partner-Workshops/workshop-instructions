@@ -4,9 +4,9 @@
 
 | | |
 |---|---|
-| **Date** | TBD |
-| **Location** | TBD |
-| **Host Organization** | *(customer)* |
+| **Date** | 24 August 2026 |
+| **Location** | Remote |
+| **Host Organization** | *(customer)* — FS ADM team |
 | **Level** | 201 (intermediate — assumes at least one prior Devin session) |
 | **Duration** | ~3 hours (3 tracks, run in sequence, sessions overlap) |
 | **Audience** | ADM delivery pods — developers, quality engineers, leads deciding where cloud agents fit in their SDLC |
@@ -469,33 +469,50 @@ ts-java-spring-boot-realworld.
 
 `timesheet-infra` holds `terraform/`, `lambda/`, and `docker/` — useful for showing that drift reporting is not only about application dependencies.
 
-#### Paste into Devin
+#### Build these in the Automations tab
+
+The other labs start a session. This one is configured in the platform, so the trigger belongs to the org rather than to you:
+
+1. Open **Automations** in the left sidebar of the organization page.
+2. Rather than filling in the trigger and action form by hand, use the option to generate the automation with Devin — describe what you want in the chat input and Devin drafts the trigger, conditions, prompt, and session config.
+3. Paste **Automation 1** below into that input, then review the draft: check the schedule, the repo scope, and the guardrails before saving.
+4. Repeat with **Automation 2**.
+5. For each one, note where the human checkpoint sits — if you can't point to it, the automation isn't ready for a client estate.
+
+**Automation 1 — weekly drift report**
 
 ```
-Design two always-on automations and implement their
-artifacts.
+On a weekly schedule, produce a dependency and
+infrastructure drift report across petclinic-microservices,
+timesheet-app, and timesheet-infra.
 
-1. Scheduled drift report (weekly) across
-   petclinic-microservices, timesheet-app, and
-   timesheet-infra: dependency versions behind current,
-   known advisories, and Terraform provider/module versions
-   in `timesheet-infra/terraform/`. Output is one report
-   plus a ranked, sized remediation queue — the queue is
-   the input to a Track 2 fan-out.
-2. Ticket-triggered triage for timesheet-app: on a new bug
-   report, reproduce it against `backend/src/` and
-   `frontend/src/`, identify the responsible code path,
-   assess severity, and post the findings. Ask for
-   confirmation before fixing anything above trivial.
-3. For each automation, state the trigger, the guardrails,
-   and the human checkpoint.
+1. Report dependency versions behind current, known
+   advisories, and the Terraform provider and module
+   versions in `timesheet-infra/terraform/`.
+2. Output one report plus a ranked, sized remediation queue
+   — the queue is the input to a Track 2 fan-out, so each
+   item must be small enough for one child session.
+3. Do not change code. Reporting only.
+```
+
+**Automation 2 — ticket-triggered triage**
+
+```
+When a new bug report arrives for timesheet-app, triage it.
+
+1. Reproduce the reported behavior against `backend/src/`
+   and `frontend/src/`.
+2. Identify the responsible code path, assess severity, and
+   post the findings back on the ticket.
+3. Ask for confirmation before fixing anything beyond a
+   trivial change.
 ```
 
 #### Key Takeaways
 
 - Scheduled reporting is what keeps a Track 2 fan-out fed with real, prioritized work.
 - Triage automation earns its place by compressing time-to-diagnosis, before it ever writes a fix.
-- Every always-on automation needs an explicit human checkpoint — that is what makes it deployable in a regulated estate.
+- An always-on automation needs an explicit human checkpoint — that is what makes it deployable in a regulated estate.
 
 ---
 
