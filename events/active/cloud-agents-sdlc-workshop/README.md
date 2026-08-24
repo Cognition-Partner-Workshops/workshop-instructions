@@ -25,7 +25,7 @@ Three patterns cover nearly every place a cloud agent earns its keep in the SDLC
 Why this order: Track 1 is the pattern every participant can use tomorrow, and it produces the artifact the later tracks build on. Track 2 takes one proven task and multiplies it across a portfolio. Track 3 removes the human from *starting* the work. Each track uses the same four application families, so the codebase stops being the variable and the operating pattern becomes the thing under study.
 
 - **Track 1 (Delegate)** — full-stack feature and bug work on `timesheet-app`, plus a mid-flow test/docs handoff on `ts-java-spring-boot-realworld`.
-- **Track 2 (Scale-Out)** — the same job fanned across the six services in `petclinic-microservices`, and across the `quickapp-*` family.
+- **Track 2 (Scale-Out)** — the same job fanned across the seven service modules in `petclinic-microservices`, and across the `quickapp-*` family.
 - **Track 3 (Always-On)** — PR review, CI-failure repair, and scheduled drift reporting wired into `ts-java-spring-boot-realworld` and `petclinic-*`.
 
 ## Getting the Most from This Workshop
@@ -47,7 +47,7 @@ Why this order: Track 1 is the pattern every participant can use tomorrow, and i
   - [Lab 1B — Bug Fix with a Regression Test](#lab-1b)
   - [Lab 1C — Mid-Flow Handoff: Tests and Docs](#lab-1c)
 - [Track 2 — Scale-Out: Parallel Agents](#track-2)
-  - [Lab 2A — One Job, Six Services](#lab-2a)
+  - [Lab 2A — One Job, Seven Services](#lab-2a)
   - [Lab 2B — Fleet-Wide Lint and Warning Cleanup](#lab-2b)
   - [Lab 2C — Parallel Decomposition Across the QuickApp Family](#lab-2c)
 - [Track 3 — Always-On: Event-Driven](#track-3)
@@ -72,7 +72,7 @@ Why this order: Track 1 is the pattern every participant can use tomorrow, and i
 | 0:45–1:10 | Review Track 1 PRs — leave comments, watch Devin iterate |
 | 1:10–1:20 | Turn the Track 1 session into a playbook (feeds Track 2) |
 | 1:20–1:30 | Break |
-| 1:30–1:40 | **Track 2:** kick off Lab 2A (fan-out across six services) |
+| 1:30–1:40 | **Track 2:** kick off Lab 2A (fan-out across seven service modules) |
 | 1:40–2:10 | Review the child-session PRs as they land — compare consistency |
 | 2:10–2:40 | **Track 3:** configure PR review + CI-failure automations, trigger them live |
 | 2:40–3:00 | Wrap-up: which of your real workflows belongs in which pattern, Q&A |
@@ -241,9 +241,9 @@ The unit of scale is the repo, the service, or the module — not the engineer. 
 
 <a id="lab-2a"></a>
 
-### Lab 2A — One Job, Six Services
+### Lab 2A — One Job, Seven Services
 
-**Value driver:** *A version upgrade across a service estate: identical procedure, six services, six PRs, concurrently.*
+**Value driver:** *A version upgrade across a service estate: identical procedure, seven service modules, seven PRs, concurrently.*
 
 - **Repository:** [petclinic-microservices](https://github.com/Cognition-Partner-Workshops/petclinic-microservices)
 - **Lab modules:** [Repetitive Framework Upgrades](../../../labs/migration-modernization/repetitive-framework-upgrades.md) · [Framework Upgrade](../../../labs/migration-modernization/framework-upgrade.md)
@@ -283,9 +283,9 @@ config-server, discovery-server, admin-server).
 
 #### Key Takeaways
 
-- Fan-out quality is a function of procedure quality: a vague parent prompt produces six differently-shaped PRs.
-- Independent PRs mean independent review and independent merge — one problem service doesn't block the other five.
-- This is the shape of every portfolio-wide job: bulk CVE remediation, framework upgrades, codebase-wide refactors.
+- Fan-out quality is a function of procedure quality: a vague parent prompt produces seven differently-shaped PRs.
+- Independent PRs mean independent review and independent merge — one problem service doesn't block the other six.
+- This is the shape most portfolio-wide jobs take: bulk CVE remediation, framework upgrades, codebase-wide refactors.
 
 ---
 
